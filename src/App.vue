@@ -58,12 +58,10 @@
                   <img :src="contact.img">
                 </va-avatar>
               </va-list-item-section> -->
-
               <va-list-item-section>
                 <va-list-item-label>
                   {{ klient.navn }}
                 </va-list-item-label>
-
                 <va-list-item-label caption>
                   {{ klient.beskrivelse }}
                 </va-list-item-label>
@@ -148,8 +146,53 @@
             :options="options"
             class="mb-4"
           /> -->
+<<<<<<< HEAD
           <LoginForm v-if="loginForm"></LoginForm>
           <RegisterForm v-if="registerForm"></RegisterForm>
+=======
+          <button type="button" class="toggle-btn" @click="login()">Log In</button>
+          <button type="button" class="toggle-btn" @click="displayRegister()">Register</button>
+          <!-- <LoginForm v-if="loginForm"></LoginForm> -->
+          <va-form v-if="loginForm">
+                 <va-input
+                    class="mb-4 mr-4"
+                    label="Email"
+                    v-model="email"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+                <va-input
+                    label="Passord"
+                    v-model="passord"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+          </va-form>
+           <va-form v-if="registerForm">
+                <va-input
+                    class="mb-4 mr-4"
+                    label="Fornavn"
+                    v-model="fornavn"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+                <va-input
+                    class="mb-4 mr-4"
+                    label="Etternavn"
+                    v-model="etternavn"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+                 <va-input
+                    class="mb-4 mr-4"
+                    label="Email"
+                    v-model="email2"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+                <va-input
+                    label="Passord"
+                    v-model="passord2"
+                    :rules="[value => (value && value.length > 0) || 'Field is required']"
+                />
+            </va-form>
+          <!-- <RegisterForm v-if="registerForm"></RegisterForm> -->
+>>>>>>> 33dfed02fc95cad09c7c23a30e51426673b379ff
           <va-button v-if="diplayLoggInnBtn" @click="loggInn()"> Logg inn </va-button>
           <va-button v-if="diplayRegisterBtn" @click="register()"> Register </va-button>
           <!-- <div>
@@ -205,8 +248,8 @@
             </thead>
             <tbody>
               <tr>
-                <td>Navn</td>
-                <td>Telefon</td>
+                <td>Navn {{ fornavn }}</td>
+                <td>Etternavn {{ etternavn }}</td>
                 <td>
                   <!-- <va-badge
                     :text="user.status"
@@ -215,7 +258,7 @@
                 </td>
               </tr>
               <tr>
-                <td>Email</td>
+                <td>Email {{ email2 }}</td>
                 <td>
                   <!-- <va-badge
                     :text="user.status"
@@ -261,8 +304,8 @@ import behandlingsInfo from './components/behandlingsInfo.vue'
 import klientInfo from './components/klientInfo.vue'
 import datoTidInfo from './components/datoTidInfo.vue'
 import userInfo from './components/userInfo.vue'
-import LoginForm from './components/LoginForm.vue'
-import RegisterForm from './components/RegisterForm.vue'
+// import LoginForm from './components/LoginForm.vue'
+// import RegisterForm from './components/RegisterForm.vue'
 import { projectFirestore } from './main'
 // import { Calendar } from 'v-calendar'
 import { DatePicker } from 'v-calendar'
@@ -275,8 +318,8 @@ export default ({
     klientInfo,
     datoTidInfo,
     userInfo,
-    LoginForm,
-    RegisterForm,
+    // LoginForm,
+    // RegisterForm,
     // Calendar
     DatePicker
   },
@@ -318,7 +361,7 @@ export default ({
       displayBehandling: true,
       displayKlient: false,
       displayDatoTid: false,
-      userInfo: false
+      userInfo: false,
       // customer: {
       //   name: 'Nathan Reyes',
       //   birthday: '1983-01-21'
@@ -329,6 +372,12 @@ export default ({
       // }
       // showModalSizeLarge: true
       // showModal: false
+      email: '',
+      passord: '',
+      fornavn: '',
+      etternavn: '',
+      email2: '',
+      passord2: ''
     }
   },
   methods: {
@@ -401,10 +450,16 @@ export default ({
     loggInn () {
       this.step4 = false
       this.step5 = true
+      console.log(this.email)
+      console.log(this.passord)
     },
     register () {
       this.step4 = false
       this.step5 = true
+      console.log(this.fornavn)
+      console.log(this.etternavn)
+      console.log(this.email2)
+      console.log(this.passord2)
     },
     // showButton (value3) {
     //   console.log('clikced')
@@ -509,6 +564,14 @@ export default ({
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+}
+.toggle-btn{
+  background-color: blue;
+  color: white;
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 100%;
 }
 /* .item > button {
   top: 0;

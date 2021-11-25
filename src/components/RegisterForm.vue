@@ -9,7 +9,7 @@
                     v-model="inputValue1"
                     :rules="[value => (value && value.length > 0) || 'Field is required']"
                 />
-                 <va-input
+                <va-input
                     class="mb-4 mr-4"
                     label="Etternavn"
                     v-model="inputValue2"
