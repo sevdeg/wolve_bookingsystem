@@ -13,7 +13,9 @@
       Show modal size large
     </va-button> -->
     <Modal>
-      <behandlingsInfo></behandlingsInfo>
+      <behandlingsInfo v-if="displayBehandling"></behandlingsInfo>
+      <klientInfo v-if="displayKlient"></klientInfo>
+      <datoTidInfo v-if="displayDatoTid"></datoTidInfo>
       <!-- STEP 1 -->
       <div class="flex md8" v-if="step1">
         <va-list-label>
@@ -137,13 +139,6 @@
             Kundeinformasjon
         </va-list-label>
         <div class="item">
-          <va-button-toggle
-            toggle-color="black"
-            color="#7e06ae"
-            v-model="model"
-            :options="options"
-            class="mb-4"
-          />
           <button type="button" class="toggle-btn" @click="login()">Log In</button>
           <button type="button" class="toggle-btn" @click="displayRegister()">Register</button>
           <LoginForm v-if="loginForm"></LoginForm>
@@ -231,6 +226,8 @@
 <script>
 import Modal from './components/Modal.vue'
 import behandlingsInfo from './components/behandlingsInfo.vue'
+import klientInfo from './components/klientInfo.vue'
+import datoTidInfo from './components/datoTidInfo.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import { projectFirestore } from './main'
@@ -242,6 +239,8 @@ export default ({
   components: {
     Modal,
     behandlingsInfo,
+    klientInfo,
+    datoTidInfo,
     LoginForm,
     RegisterForm,
     // Calendar
@@ -249,12 +248,6 @@ export default ({
   },
   data () {
     return {
-      options: [
-        { label: 'One', value: 'one' },
-        { label: 'Two', value: 'two' },
-        { label: 'Three', value: 'three' }
-      ],
-      model: 'two',
       value3: new Date(),
       timezone: '',
       show: false,
@@ -273,6 +266,9 @@ export default ({
       registerForm: false,
       loginForm: true,
       displayBtn: false,
+      displayBehandling: true,
+      displayKlient: false,
+      displayDatoTid: false,
       // showContent: true,
       behandlingstyper: [],
       klienter: [],
@@ -296,6 +292,8 @@ export default ({
     // Get name for step 1
     getId (typeNavn) {
       console.log('klikket på get ID')
+      this.displayBehandling = false
+      this.displayKlient = true
       this.value = typeNavn
       console.log(this.value)
       this.step1 = false
@@ -311,6 +309,7 @@ export default ({
     // },
     getKlientNavn (klientNavn) {
       console.log('klikket på klient navn funk')
+      this.displayKlient = false
       this.value2 = klientNavn
       console.log(this.value2)
       this.step1 = false
@@ -319,6 +318,7 @@ export default ({
     },
     getDato (value3) {
       console.log(value3)
+      this.displayDatoTid = true
       value3 = this.value3
       console.log(value3)
       this.step1 = false
@@ -330,6 +330,7 @@ export default ({
     },
     nextBtn () {
       console.log('klikket på knapp')
+      this.displayDatoTid = true
       this.step3 = false
       this.step4 = true
       this.displayBtn = false

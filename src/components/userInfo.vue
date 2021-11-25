@@ -2,9 +2,9 @@
     <div class="flex md4" id="leftDiv">
         <va-card>
         <!-- <va-card-title>Velg behandling, fortell litt type info du vil vise</va-card-title> -->
-        <va-card-content>BILDE 1</va-card-content> <br>
-        <va-card-content>Velg din behandling</va-card-content>
-        <va-card-content>Her kan du velge den behandlingen som passer deg best</va-card-content><br>
+        <va-card-content>BILDE 4</va-card-content> <br>
+        <va-card-content>Skriv inn kundeinformasjon</va-card-content>
+        <va-card-content>Skriv inn dine kontakt informasjon, slik at vi kan kontakte deg</va-card-content><br>
         <va-card-content>Spørsmål?</va-card-content>
         <va-card-content>Ring: 45662894</va-card-content>
         </va-card>
