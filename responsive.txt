@@ -1,0 +1,91 @@
+<div class="row">
+                <div class="col-xs-12 col-md-3">.col-xs-12 .col-md-3
+
+                </div>
+                <div class="col-xs-12 col-md-3">.col-xs-12 .col-md-3
+
+                </div>
+                <div class="col-xs-12 col-md-3">.col-xs-12 .col-md-3
+
+                </div>
+                <div class="col-xs-12 col-md-3">.col-xs-12 .col-md-3
+
+                </div>
+            </div> -->
+            <!-- CARDDDDD  -->
+             <!-- <div class="row">
+                <div class="flex md6 lg4">
+                <va-card color="primary" gradient>
+                    <va-card-title>Title</va-card-title>
+                    <va-card-content>Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit.</va-card-content>
+                </va-card>
+                </div>
+            </div> -->
+            <div class="d-flex align-items-stretch">
+              <div class=".flex-row">
+                <va-card  style="background-color:red;">
+                  <!-- <va-card-title>Stretch vertical alignment</va-card-title> -->
+                  <!-- <va-card-actions align="stretch" vertical>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                  </va-card-actions> -->
+                <va-card>
+                  <va-slider v-model="value1" track-color="warning" />
+                  <va-card-title>Title</va-card-title>
+                  <va-card-content>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</va-card-content>
+                  <va-card-content>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</va-card-content>
+                  </va-card>
+                </va-card>
+              </div>
+              <div class=".flex-row">
+                <va-card>
+                  <va-card-title>Stretch vertical alignment</va-card-title>
+                  <va-card-actions align="stretch" vertical>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                  </va-card-actions>
+                  <va-card-actions align="stretch" vertical>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                  </va-card-actions>
+                  <va-card-actions align="stretch" vertical>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                    <va-button>Action 1</va-button>
+                    <va-button>Action 2</va-button>
+                  </va-card-actions>
+                </va-card>
+              </div>
+            </div>
+
+
+
+<script>
+export default {
+  data () {
+    return {
+      showModalSizeLarge: false,
+      value1: 45
+    }
+  }
+}
+
+</script>
