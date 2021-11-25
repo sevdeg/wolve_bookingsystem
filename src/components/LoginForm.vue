@@ -3,7 +3,7 @@
         <div>
             <h1>Logg inn form</h1>
             <va-form>
-                <va-input
+                 <va-input
                     class="mb-4 mr-4"
                     label="Email"
                     v-model="inputValue1"
