@@ -2,11 +2,10 @@
     <div class="flex md4" id="leftDiv">
         <va-card>
         <!-- <va-card-title>Velg behandling, fortell litt type info du vil vise</va-card-title> -->
-        <va-card-content>BILDE 2</va-card-content> <br>
-        <va-card-content>Velg din klient</va-card-content>
-        <va-card-content>Her kan du velge den klienten som passer deg best</va-card-content><br>
-        <va-card-content>Spørsmål?</va-card-content>
-        <va-card-content>Ring: 45662894</va-card-content>
+            <va-card-content>Velg din klient</va-card-content><br>
+            <va-card-content>Her kan du velge den klienten som passer deg best</va-card-content><br><br><br><br><br>
+            <va-card-content>Spørsmål?</va-card-content>
+            <va-card-content>Ring: 45662894</va-card-content>
         </va-card>
         <!-- <div class="item">ventre divvvvLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div> -->
     </div>

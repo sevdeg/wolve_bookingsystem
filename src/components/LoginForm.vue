@@ -1,6 +1,7 @@
 <template>
     <div class="hero">
         <div>
+            <h1>Logg inn form</h1>
             <va-form>
                 <va-input
                     class="mb-4 mr-4"
@@ -13,7 +14,6 @@
                     v-model="inputValue2"
                     :rules="[value => (value && value.length > 0) || 'Field is required']"
                 />
-                <va-button> Logg inn </va-button>
             </va-form>
         </div>
     </div>
