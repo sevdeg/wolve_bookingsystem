@@ -13,7 +13,10 @@
       Show modal size large
     </va-button> -->
     <Modal>
-      <behandlingsInfo></behandlingsInfo>
+      <behandlingsInfo v-if="displayBehandling"></behandlingsInfo>
+      <klientInfo v-if="displayKlient"></klientInfo>
+      <datoTidInfo v-if="displayDatoTid"></datoTidInfo>
+      <userInfo v-if="userInfo"></userInfo>
       <!-- STEP 1 -->
       <div class="flex md8" v-if="step1">
         <va-list-label>
@@ -137,17 +140,42 @@
             Kundeinformasjon
         </va-list-label>
         <div class="item">
-          <va-button-toggle
+          <!-- <va-button-toggle
             toggle-color="black"
             color="#7e06ae"
             v-model="model"
             :options="options"
             class="mb-4"
-          />
+          /> -->
           <button type="button" class="toggle-btn" @click="login()">Log In</button>
           <button type="button" class="toggle-btn" @click="displayRegister()">Register</button>
           <LoginForm v-if="loginForm"></LoginForm>
           <RegisterForm v-if="registerForm"></RegisterForm>
+          <va-button v-if="diplayLoggInnBtn" @click="loggInn()"> Logg inn </va-button>
+          <va-button v-if="diplayRegisterBtn" @click="register()"> Register </va-button>
+          <!-- <div>
+            <va-button-toggle
+              outline
+              v-model="model"
+              :options="options"
+            />
+
+            <div class="mb-2" />
+
+            <va-button-toggle
+              flat
+              v-model="model"
+              :options="options"
+            />
+
+            <div class="mb-2" />
+
+            <va-button-toggle
+              :rounded="false"
+              v-model="model"
+              :options="options"
+            />
+          </div> -->
         </div>
       </div>
       <va-button v-if="displayBtn" @click="nextBtn()" style="margin:auto;"> Gå videre </va-button>
@@ -213,7 +241,7 @@
         <!-- ---------------------------------------------------------------SEVDEEEEE -->
       </div>
       <!-- <button style="display:none">gå videre</button> -->
-    <!-- <form @submit.prevent="addMessage">
+    <!-- <form @submit.prevent="addOrdre">
       <select v-model="value">
         <option value="developer">web developer</option>
         <option value="designer">web designer</option>
@@ -231,6 +259,9 @@
 <script>
 import Modal from './components/Modal.vue'
 import behandlingsInfo from './components/behandlingsInfo.vue'
+import klientInfo from './components/klientInfo.vue'
+import datoTidInfo from './components/datoTidInfo.vue'
+import userInfo from './components/userInfo.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import { projectFirestore } from './main'
@@ -242,6 +273,9 @@ export default ({
   components: {
     Modal,
     behandlingsInfo,
+    klientInfo,
+    datoTidInfo,
+    userInfo,
     LoginForm,
     RegisterForm,
     // Calendar
@@ -249,12 +283,12 @@ export default ({
   },
   data () {
     return {
-      options: [
-        { label: 'One', value: 'one' },
-        { label: 'Two', value: 'two' },
-        { label: 'Three', value: 'three' }
-      ],
-      model: 'two',
+      // options: [
+      //   { label: 'One', value: 'one' },
+      //   { label: 'Two', value: 'two' },
+      //   { label: 'Three', value: 'three' }
+      // ],
+      // model: 'two',
       value3: new Date(),
       timezone: '',
       show: false,
@@ -272,14 +306,20 @@ export default ({
       step5: false,
       registerForm: false,
       loginForm: true,
-      displayBtn: false,
+      diplayLoggInnBtn: true,
+      diplayRegisterBtn: false,
       // showContent: true,
       behandlingstyper: [],
       klienter: [],
       value: null,
       value2: null,
       // value3: new Date(),
-      getNavn: null
+      getNavn: null,
+      displayBtn: false,
+      displayBehandling: true,
+      displayKlient: false,
+      displayDatoTid: false,
+      userInfo: false
       // customer: {
       //   name: 'Nathan Reyes',
       //   birthday: '1983-01-21'
@@ -301,6 +341,8 @@ export default ({
       this.step1 = false
       // this.fetchKlienter()
       this.step2 = true
+      this.displayBehandling = false
+      this.displayKlient = true
     },
     // Get current time
     // currentDate () {
@@ -316,6 +358,8 @@ export default ({
       this.step1 = false
       this.step2 = false
       this.step3 = true
+      this.displayKlient = false
+      this.displayDatoTid = true
     },
     getDato (value3) {
       console.log(value3)
@@ -326,15 +370,37 @@ export default ({
       this.step3 = true
       this.step5 = false
       this.displayBtn = true
-      // this.addMessage()
+      // this.addOrdre()
     },
     nextBtn () {
       console.log('klikket på knapp')
       this.step3 = false
       this.step4 = true
       this.displayBtn = false
+      this.displayDatoTid = false
+      this.userInfo = true
       // this.step5 = true
-      // this.addMessage()
+      this.addOrdre()
+    },
+    login () {
+      this.registerForm = false
+      this.loginForm = true
+      this.diplayRegisterBtn = false
+      this.diplayLoggInnBtn = true
+    },
+    displayRegister () {
+      this.loginForm = false
+      this.registerForm = true
+      this.diplayLoggInnBtn = false
+      this.diplayRegisterBtn = true
+    },
+    loggInn () {
+      this.step4 = false
+      this.step5 = true
+    },
+    register () {
+      this.step4 = false
+      this.step5 = true
     },
     // showButton (value3) {
     //   console.log('clikced')
@@ -349,14 +415,14 @@ export default ({
     // handleSubmit () {
     //   console.log('trykket på submit')
     //   console.log(this.role)
-    //   this.addMessage()
+    //   this.addOrdre()
     // },
     // handlerNavn () {
     //   console.log('klikket på en av items')
     //   console.log(this.getNavn)
     // },
     // FUNGERER FOR Å ADDE I DATABASE
-    addMessage () {
+    addOrdre () {
       console.log('inne i add message')
       if (this.value && this.value2 && this.value3) {
         // this.feedback = null
@@ -440,6 +506,46 @@ export default ({
   font-weight: bold;
   color: #2c3e50;
 }
+/* .item > button {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #ff105f, #ffad06, blue);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.toggle-btn:hover {
+  background: linear-gradient(to right, #ff105f, #ffad06);
+  top: 0;
+  bottom: 0;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #ff105f, #ffad06, blue);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.toggle-btn:visited {
+  background: linear-gradient(to right, #ff105f, #ffad06);
+  top: 0;
+  bottom: 0;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #ff105f, #ffad06, blue);
+  border-radius: 30px;
+  transition: .5s;
+}
+.toggle-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  background:transparent;
+  border:0;
+  outline: none;
+  position: relative;
+} */
 
 #nav a.router-link-exact-active {
   color: #42b983;

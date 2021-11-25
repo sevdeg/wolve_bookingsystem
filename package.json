@@ -10,7 +10,6 @@
   "dependencies": {
     "core-js": "^3.18.2",
     "popup-message": "0.0.7",
-    "sass-loader": "^12.3.0",
     "v-calendar": "^3.0.0-alpha.6",
     "vue": "^3.2.20",
     "vue-router": "^4.0.0-0",
